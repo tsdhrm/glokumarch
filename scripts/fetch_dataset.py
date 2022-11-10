@@ -4,6 +4,18 @@ import random
 
 random.seed(4)
 
+def export_to_csv(pff, nff, export_dst):
+    export_path = export_dst+"/selected_dataset.csv"
+    with open(export_path, "w", encoding="UTF8") as file:
+        writer = csv.writer(file)
+        concatenated_data = [*pff, *nff]
+        for i in range(len(concatenated_data)):
+            if i <= 295:
+                row_data = [concatenated_data[i], "1"] 
+            else:
+                row_data = [concatenated_data[i], "0"]
+            writer.writerow(row_data)
+
 def balance_data(nfname, pnum):
     nfbalanced = random.choices(nfname, k=pnum)
     return nfbalanced
@@ -18,27 +30,31 @@ def get_fname_list(csvsrc):
             if line_count != 0:
                 posfname.append(row[0]) if row[1] == "1" else negfname.append(row[0])
             line_count+=1
-    return posfname, negfname
+    nfb = balance_data(negfname, len(posfname))
+    return posfname, nfb
 
-def select_data(pname, fname):
-    print(DATASET_SRC)
-    return "sweet"
+def select_data(pname, nname):
+    pfullfname = list()
+    nfullfname = list()
+    for data in os.listdir(DATASET_SRC):
+        for i in range(0, len(pname)):
+            if data == pname[i]:
+                pfullfname.append(os.path.join(DATASET_SRC, data))
+            elif data == nname[i]:
+                nfullfname.append(os.path.join(DATASET_SRC, data))
+    return pfullfname, nfullfname
 
 def main():
     global DATASET_SRC 
-    global POSITVE_DST 
-    global NEGATIVE_DST
     global CSV_SRC
 
     DATASET_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/G1020/NerveRemoved_Images"
-    POSITVE_DST = "/dataset/positiveimgs/"
-    NEGATIVE_DST = "/dataset/negativeimgs/"
     CSV_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/G1020/G1020.csv"
-
+    CSV_DST = "/home/tsdhrm/Documents/dev/cobaRetina"
 
     p_fname, n_fname = get_fname_list(CSV_SRC)
-    nf_balanced = balance_data(n_fname, len(p_fname))
-    dataset = select_data(p_fname, nf_balanced)
+    p_fullfname, n_fullfname = select_data(p_fname, n_fname)
+    export_to_csv(p_fullfname, n_fullfname, CSV_DST)
 
 
 
