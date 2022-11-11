@@ -12,6 +12,7 @@ numpy = "*"
 opencv-python = "*"
 pandoc = "*"
 ipykernel = "*"
+matplotlib = "*"
 
 [dev-packages]
 
