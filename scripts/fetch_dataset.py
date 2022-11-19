@@ -49,9 +49,12 @@ def main():
     global DATASET_SRC 
     global CSV_SRC
 
-    DATASET_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/ORIGA/Images_Cropped"
-    CSV_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/ORIGA/OrigaList.csv"
-    CSV_DST = "/home/tsdhrm/Documents/dev/cobaRetina"
+    #  DATASET_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/ORIGA/Images_Cropped"
+    DATASET_SRC = "/Users/teguhsatya/Pictures/trials/KAGGLE_RETINA/ORIGA/Images_Cropped"
+    # CSV_SRC = "/home/tsdhrm/Pictures/trials/KAGGLE_RETINA/ORIGA/OrigaList.csv"
+    CSV_SRC = "/Users/teguhsatya/Pictures/trials/KAGGLE_RETINA/ORIGA/OrigaList.csv"
+    # CSV_DST = "/home/tsdhrm/Documents/dev/cobaRetina"
+    CSV_DST = "/Users/teguhsatya/Desktop/helloNew/glokumarch/dataset"
 
     p_fname, n_fname = get_fname_list(CSV_SRC)
     p_fullfname, n_fullfname = select_data(p_fname, n_fname)
