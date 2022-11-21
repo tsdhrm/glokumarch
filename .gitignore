@@ -3,3 +3,4 @@ positiveimgs
 negativeimgs
 selected_dataset.csv
 assets
+*.png

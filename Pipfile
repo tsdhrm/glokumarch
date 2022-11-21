@@ -13,6 +13,9 @@ opencv-python = "*"
 pandoc = "*"
 ipykernel = "*"
 matplotlib = "*"
+seaborn = "*"
+plotly = "==5.11.0"
+ipywidgets = "*"
 
 [dev-packages]
 
